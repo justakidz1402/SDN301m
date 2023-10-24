@@ -39,7 +39,7 @@ const productRepository = {
         return product.comments;
     },
     getProductById: async (id) => {
-        const product = await Product.findById(id);
+        const product = await Product.findById(id).populate('category');
         return product;
     }
 };
