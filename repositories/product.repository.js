@@ -38,6 +38,10 @@ const productRepository = {
         const product = await Product.findById(id).populate('comments');
         return product.comments;
     },
+    getProductById: async (id) => {
+        const product = await Product.findById(id);
+        return product;
+    }
 };
 
 export default productRepository;
