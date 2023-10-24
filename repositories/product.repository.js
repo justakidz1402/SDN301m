@@ -25,15 +25,13 @@ const productRepository = {
     getAll: async () => {
         return await Product.find();
     },
-    addComment: async (id, comments = []) => {
-            comments.map(({user, text, content}) => {
-                Comment.create({user, text, content}).then(docComment => {
+    addComment: async (id, user, text, content) => {
+                await Comment.create({user, text, content}).then(docComment => {
                     return Product.findByIdAndUpdate(id, {
                         $push: {
                             comments: docComment._id
                         }})
                 })
-            })
     },
     getAllCommentById: async (id) => {
         const product = await Product.findById(id).populate('comments');

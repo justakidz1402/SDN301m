@@ -23,8 +23,8 @@ const productController = {
     addComment: async (req, res) => {
         try {
             const { id } = req.params;
-            const { comments } = req.body;
-            await repositories.productRepository.addComment(id, comments);
+            const { user, text, content } = req.body;
+            await repositories.productRepository.addComment(id, user, text, content);
             res.status(200).send({
                 message: "Comment created successfully"
             });
