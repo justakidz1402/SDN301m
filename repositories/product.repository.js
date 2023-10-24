@@ -23,7 +23,8 @@ const productRepository = {
             })
     },
     getAll: async () => {
-        return await Product.find();
+        const product = await Product.find().populate('category').populate('comments');
+        return product
     },
     addComment: async (id, user, text, content) => {
                 await Comment.create({user, text, content}).then(docComment => {
